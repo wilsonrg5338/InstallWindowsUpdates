@@ -1,0 +1,19 @@
+#Author: Reggie Wilson
+#Last Modifed: 11/13/2023
+
+
+#This script will install previously downloaded Windows updates
+
+
+#Update the TLS version of the current powershell session
+	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+	
+#Install Nuget Package Provider
+	Install-PackageProvider -Name Nuget -Force
+	
+#Install and Import PSWindowsUpdate Module
+	Install-Module -Name PSWindowsUpdate -Force
+	Import-Module -Name PSWindowsUpdate -Force
+	
+#Install Windows Updates and Bypass Confirmation Message
+	Install-WindowsUpdate -Confirm:$False -IgnoreReboot
